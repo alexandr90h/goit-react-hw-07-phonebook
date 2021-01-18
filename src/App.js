@@ -10,8 +10,7 @@ export default function App() {
   const stateData = useSelector(state => state.items);
   const filterName = useSelector(state => state.filter);
  useEffect(() => {
-   localStorage.setItem('contacts', JSON.stringify(stateData));
-   fetch('http://localhost:3001/contacts/').then(res=>res.json()).then(obj=>console.log(obj))
+   localStorage.setItem('', JSON.stringify(stateData));
   }, [stateData,filterName]);
   
     return (
