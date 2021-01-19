@@ -1,9 +1,10 @@
-import { createStore, combineReducers } from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { createReducer } from "@reduxjs/toolkit";
 import contactsAction from "./action";
+import { combineReducers } from 'redux';
 
-const items = createReducer(JSON.parse(localStorage.getItem('contacts'))??[], {
+
+const items = createReducer([], {
+    [contactsAction.fetchContactsSuccess]: (_, action) => action.payload,
     [contactsAction.addContacts]: (state, action) => {
         if (state.find(obj => obj.name.toLowerCase() === action.payload.name.toLowerCase()) !== undefined) {
             alert(`${action.payload.name} is alreadyin contacts.`);
@@ -12,14 +13,22 @@ const items = createReducer(JSON.parse(localStorage.getItem('contacts'))??[], {
     },
     [contactsAction.delContacts]: (state, action) => state.filter(({ id }) => id !== action.payload)
 });
-
+const isLoading = createReducer(false, {
+    [contactsAction.fetchContactsRequuest]: () => true,
+    [contactsAction.fetchContactsSuccess]: () => false,
+    [contactsAction.fetchContactsError]: () => false,
+});
+const error = createReducer(null, {
+    [contactsAction.fetchContactsError]: (_, action) => action.payload,
+        [contactsAction.fetchContactsRequuest]:()=>null,
+})
 const filter = createReducer('', {
-    [contactsAction.filterChange]: (_,action)=>action.payload
+    [contactsAction.filterChange]: (_, action) => action.payload,
 })
 
-const reduser = combineReducers({
-    items, filter,
-});
-
-const store = createStore(reduser, composeWithDevTools());
-export default store;
+export default combineReducers({
+    items,
+    isLoading,
+    error,
+    filter,
+})

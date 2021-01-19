@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export default axios.create({
-  baseURL: "http://localhost:3001/contacts",
-  responseType: "json"
-});
+axios.defaults.baseURL = "http://localhost:3001";
+
+export async function fetchContacts() {
+  const { data } = await axios.get("/contacts/");
+  return data;
+}

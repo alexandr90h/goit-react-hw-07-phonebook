@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ContactsListItem from './ContactsItem';
 import styles from './conractsList.module.scss'
 import contactsAction from "../redux/action.js";
+import * as operation from "../redux/operation";
 
 
 export default function ContactsList() {
     const stateData = useSelector(state => state.items);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
+    useEffect(() => {
+        dispatch(operation.fetchContacts());
+    }, [dispatch])
     return (
         <ol className={styles.contactList}>
             {stateData.map(obj => {

@@ -30,7 +30,6 @@ export default function InputMainForm() {
     const hendleOnSubmite = e => {
         // e.preventDefault();
         dispatch(contactsAction.addContacts(name, number));
-        fetch()
         reset();
     }
     const reset = () => {
