@@ -1,7 +1,7 @@
 import ContactsListItem from '../ContactsList/ContactsItem';
 import styles from '../ContactsList/conractsList.module.scss';
 import PropTypes from 'prop-types';
-import contactsAction from "../redux/action.js";
+import * as operation from "../redux/operation";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function FilterContactsList() {
@@ -9,7 +9,7 @@ export default function FilterContactsList() {
     const filterName = useSelector(state => state.filter);
     const dispatch = useDispatch();
     const filterArr = stateData.filter(obj => {
-        return (obj.name.toLowerCase().includes(filterName.toLowerCase()))
+        return (obj.name.toLowerCase().includes(filterName.toLowerCase()));
     });
     return (
         <ol className={styles.contactList}>
@@ -18,7 +18,7 @@ export default function FilterContactsList() {
                     id={obj.id}
                     name={obj.name}
                     number={obj.number}
-                    onBtnDelId={()=>dispatch(contactsAction.delContacts(obj.id))}
+                    onBtnDelId={()=>dispatch(operation.delContacts(obj.id))}
                 />)
             })}
         </ol>

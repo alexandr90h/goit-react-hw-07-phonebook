@@ -15,6 +15,6 @@ export default function ContactsListItem(props) {
 ContactsListItem.propTypes = {
     name: PropTypes.string,
     number: PropTypes.string,
-    id: PropTypes.string,
+    id:PropTypes.number,
     onBtnDelId:PropTypes.func,
 }

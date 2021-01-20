@@ -9,7 +9,18 @@ const addContactsRequuest = createAction('contacts/addContactsRequuest');
 const addContactsSuccess = createAction('contacts/addContactsSuccess');
 const addContactsError = createAction('contacts/addContactsError');
 
-const delContacts = createAction('contacts/dalete');
-const filterChange = createAction('contacts/changeFilter');
-const contactsAction={ delContacts, filterChange,fetchContactsRequuest,fetchContactsSuccess, fetchContactsError,addContactsRequuest,addContactsSuccess,addContactsError}
-export default  contactsAction;
+const delContactsRequuest = createAction('contacts/delContactsRequuest');
+const delContactsSuccess = createAction('contacts/delContactsSuccess');
+const delContactsError = createAction('contacts/delContactsError');
+
+const filterContactsRequuest = createAction('contacts/filterContactsRequuest');
+const filterContactsSuccess = createAction('contacts/filterContactsSuccess');
+const filterContactsError = createAction('contacts/filterContactsError');
+
+
+const contactsAction = {
+    fetchContactsRequuest, fetchContactsSuccess, fetchContactsError, addContactsRequuest,
+    addContactsSuccess, addContactsError, delContactsRequuest, delContactsSuccess, delContactsError, filterContactsRequuest,
+    filterContactsSuccess,filterContactsError,
+}
+export default contactsAction;

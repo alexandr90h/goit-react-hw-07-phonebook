@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ContactsListItem from './ContactsItem';
 import styles from './conractsList.module.scss'
-import contactsAction from "../redux/action.js";
+// import contactsAction from "../redux/action.js";
 import * as operation from "../redux/operation";
 
 
@@ -11,6 +11,7 @@ export default function ContactsList() {
     const dispatch = useDispatch(); 
     useEffect(() => {
         dispatch(operation.fetchContacts());
+        // eslint-disable-next-line
     }, [dispatch])
     return (
         <ol className={styles.contactList}>
@@ -19,7 +20,7 @@ export default function ContactsList() {
                     id={obj.id}
                     name={obj.name}
                     number={obj.number}
-                    onBtnDelId={()=>dispatch(contactsAction.delContacts(obj.id))}
+                    onBtnDelId={()=>dispatch(operation.delContacts(obj.id))}
                 />)
             })}
         </ol>

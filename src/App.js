@@ -3,15 +3,10 @@ import InputMainForm from './InputMainForm/InputMainForm';
 import ContactsList from './ContactsList/ContactsList.jsx';
 import InputFind from './InputFind/InputFind';
 import FilterContactsList from './InputFind/FilterContactsList.jsx';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function App() {
-  const stateData = useSelector(state => state.items);
   const filterName = useSelector(state => state.filter);
- useEffect(() => {
-   localStorage.setItem('', JSON.stringify(stateData));
-  }, [stateData,filterName]);
   
     return (
       <div className={styles.mainContainer}>
