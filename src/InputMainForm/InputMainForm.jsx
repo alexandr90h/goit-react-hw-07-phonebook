@@ -3,15 +3,18 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from "react-redux";
-import contactsAction from "../redux/action.js";
+import { useDispatch, useSelector } from "react-redux";
+import * as operation from "../redux/operation";
+
 
 export default function InputMainForm() {
+
         const schema = yup.object().shape({
         name: yup.string().required(),
         number:yup.number().required(),
     })
 
+    const stateData = useSelector(state => state.items);
     const { register, handleSubmit, errors} = useForm({resolver:yupResolver(schema)});
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
@@ -27,9 +30,13 @@ export default function InputMainForm() {
                 break;
         }
     }
-    const hendleOnSubmite = e => {
-        // e.preventDefault();
-        dispatch(contactsAction.addContacts(name, number));
+    const hendleOnSubmite = () => {
+        if (stateData.find(obj => obj.name.toLowerCase() === name.toLowerCase()) !== undefined) {
+            alert(`${name} is alreadyin contacts.`);
+            return;
+        }
+        dispatch(operation.addContacts( name, number ));
+        dispatch(operation.fetchContacts());
         reset();
     }
     const reset = () => {
