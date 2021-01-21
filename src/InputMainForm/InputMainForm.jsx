@@ -36,7 +36,6 @@ export default function InputMainForm() {
             return;
         }
         dispatch(operation.addContacts( name, number ));
-        // dispatch(operation.fetchContacts());
         reset();
     }
     const reset = () => {

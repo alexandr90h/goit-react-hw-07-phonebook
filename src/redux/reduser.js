@@ -17,13 +17,16 @@ const error = createReducer(null, {
     [contactsAction.fetchContactsError]: (_, action) => action.payload,
         [contactsAction.fetchContactsRequuest]:()=>null,
 })
-const filter = createReducer('', {
+const filterItems = createReducer([], {
     [contactsAction.filterContactsSuccess]: (_, action) => action.payload,
-})
-
+});
+const filter = createReducer('', {
+    [contactsAction.filterChange]: (_, action) => action.payload
+});
 export default combineReducers({
     items,
     isLoading,
     error,
     filter,
+    filterItems,
 })

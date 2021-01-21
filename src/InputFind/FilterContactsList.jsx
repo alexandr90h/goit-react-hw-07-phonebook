@@ -2,18 +2,20 @@ import ContactsListItem from '../ContactsList/ContactsItem';
 import styles from '../ContactsList/conractsList.module.scss';
 import PropTypes from 'prop-types';
 import * as operation from "../redux/operation";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
 
 export default function FilterContactsList() {
-    const stateData = useSelector(state => state.items);
     const filterName = useSelector(state => state.filter);
+    const filterItems = useSelector(state => state.filterItems);
     const dispatch = useDispatch();
-    const filterArr = stateData.filter(obj => {
-        return (obj.name.toLowerCase().includes(filterName.toLowerCase()));
-    });
+    useEffect(() => {
+        dispatch(operation.filterContacts(filterName));
+        // eslint-disable-next-line
+    },[filterItems])
     return (
         <ol className={styles.contactList}>
-            {filterArr.map(obj => {
+            {filterItems.map(obj => {
                 return(<ContactsListItem key={obj.id}
                     id={obj.id}
                     name={obj.name}

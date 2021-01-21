@@ -13,6 +13,6 @@ export async function DelContacts(item) {
   return await axios.delete(`/contacts/${item}`);
 }
 export async function FilterContacts(item) {
-  const { data } = await axios.get(`/contacts?name=${item}`);
+  const { data } = await axios.get(`/contacts?q=${item}`);
   return data;
 }
