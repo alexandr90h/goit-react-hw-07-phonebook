@@ -17,11 +17,15 @@ const filterContactsRequuest = createAction('contacts/filterContactsRequuest');
 const filterContactsSuccess = createAction('contacts/filterContactsSuccess');
 const filterContactsError = createAction('contacts/filterContactsError');
 
+const getContactsByIdRequuest = createAction('contacts/GetContactsByIdRequuest');
+const getContactsByIdSuccess = createAction('contacts/GetContactsByIdSuccess');
+const getContactsByIdError = createAction('contacts/GetContactsByIdError');
+
 const filterChange = createAction('contacts/changeFilter');
 
 const contactsAction = {
     fetchContactsRequuest, fetchContactsSuccess, fetchContactsError, addContactsRequuest,
     addContactsSuccess, addContactsError, delContactsRequuest, delContactsSuccess, delContactsError, filterContactsRequuest,
-    filterContactsSuccess,filterContactsError,filterChange,
+    filterContactsSuccess,filterContactsError,filterChange,getContactsByIdSuccess,getContactsByIdRequuest,getContactsByIdError
 }
 export default contactsAction;

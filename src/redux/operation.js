@@ -20,8 +20,17 @@ export const addContacts = (name, number) => async dispatch => {
     API.AddContacts(item).then(({ data }) => dispatch(contactsAction.addContactsSuccess(data))).catch(error => dispatch(contactsAction.addContactsError(error)));
 }
 export const delContacts = (item) => async dispatch => {
-    dispatch(contactsAction.addContactsRequuest());
+    dispatch(contactsAction.delContactsRequuest());
     API.DelContacts(item).then(() => dispatch(contactsAction.delContactsSuccess(item))).catch(error => dispatch(contactsAction.delContactsError(error)));
+}
+export const getContactsById = (item) => async dispatch => {
+    dispatch(contactsAction.getContactsByIdRequuest());
+    try {
+        const contact = await API.GetContactsById(item);
+        dispatch(contactsAction.getContactsByIdSuccess(contact));
+    } catch (error) {
+        dispatch(contactsAction.getContactsByIdError(error))
+    }
 }
 export const filterContacts = (item) => async dispatch => {
     dispatch(contactsAction.filterContactsRequuest);

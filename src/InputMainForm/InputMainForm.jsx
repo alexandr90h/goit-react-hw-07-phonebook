@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from "react-redux";
 import * as operation from "../redux/operation";
+import { getContactsItem } from "../redux/selectors";
 
 
 export default function InputMainForm() {
@@ -14,7 +15,7 @@ export default function InputMainForm() {
         number:yup.number().required(),
     })
 
-    const stateData = useSelector(state => state.items);
+    const stateData = useSelector(getContactsItem);
     const { register, handleSubmit, errors} = useForm({resolver:yupResolver(schema)});
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');

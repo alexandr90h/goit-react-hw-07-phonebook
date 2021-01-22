@@ -16,3 +16,7 @@ export async function FilterContacts(item) {
   const { data } = await axios.get(`/contacts?q=${item}`);
   return data;
 }
+export async function GetContactsById(item) {
+  const {data}= await axios.get(`/contacts/${item}`);
+  return data;
+}

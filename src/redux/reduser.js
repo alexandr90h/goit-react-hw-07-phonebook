@@ -6,8 +6,11 @@ import { combineReducers } from 'redux';
 const items = createReducer([], {
     [contactsAction.fetchContactsSuccess]: (_, action) => action.payload,
     [contactsAction.addContactsSuccess]: (state, action) => [...state, action.payload],
-    [contactsAction.delContactsSuccess]: (state, action) => state.filter(({ id }) => id !== action.payload)
+    [contactsAction.delContactsSuccess]: (state, action) => state.filter(({ id }) => id !== action.payload),
 });
+const itemById = createReducer({}, {
+    [contactsAction.getContactsByIdSuccess]: (_, action) => action.payload
+})
 const isLoading = createReducer(false, {
     [contactsAction.fetchContactsRequuest]: () => true,
     [contactsAction.fetchContactsSuccess]: () => false,
@@ -29,4 +32,5 @@ export default combineReducers({
     error,
     filter,
     filterItems,
+    itemById,
 })

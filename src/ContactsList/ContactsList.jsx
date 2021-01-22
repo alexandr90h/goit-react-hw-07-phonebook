@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import ContactsListItem from './ContactsItem';
 import styles from './conractsList.module.scss'
 import * as operation from "../redux/operation";
+import { getContactsItem } from "../redux/selectors";
 
 
 export default function ContactsList() {
-    const stateData = useSelector(state => state.items);
+    const stateData = useSelector(getContactsItem);
     const dispatch = useDispatch(); 
     useEffect(() => {
         dispatch(operation.fetchContacts());
@@ -19,7 +20,8 @@ export default function ContactsList() {
                     id={obj.id}
                     name={obj.name}
                     number={obj.number}
-                    onBtnDelId={()=>dispatch(operation.delContacts(obj.id))}
+                    // onBtnGetContById={()=>dispatch(operation.getContactsById(obj.id))}
+                    // onBtnDelId={()=>dispatch(operation.delContacts(obj.id))}
                 />)
             })}
         </ol>

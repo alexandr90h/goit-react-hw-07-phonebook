@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import * as operation from "../redux/operation";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
+import { getFilterName, getFilterItem } from "../redux/selectors";
 
 export default function FilterContactsList() {
-    const filterName = useSelector(state => state.filter);
-    const filterItems = useSelector(state => state.filterItems);
+    const filterName = useSelector(getFilterName);
+    const filterItems = useSelector(getFilterItem);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(operation.filterContacts(filterName));
