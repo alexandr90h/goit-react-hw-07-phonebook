@@ -26,6 +26,9 @@ const filterItems = createReducer([], {
 const filter = createReducer('', {
     [contactsAction.filterChange]: (_, action) => action.payload
 });
+const modalVisible = createReducer(false, {
+    [contactsAction.modalVisible]: (_, action) => action.payload
+})
 export default combineReducers({
     items,
     isLoading,
@@ -33,4 +36,5 @@ export default combineReducers({
     filter,
     filterItems,
     itemById,
+    modalVisible,
 })

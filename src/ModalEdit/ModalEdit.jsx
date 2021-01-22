@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import styles from './modalEdit.module.scss';
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+import contactsAction from '../redux/action';
+
 
 export default function ModalEdit() {
             const schema = yup.object().shape({
@@ -9,9 +14,11 @@ export default function ModalEdit() {
         number:yup.number().required(),
             })
     
+    const dispatch = useDispatch();
     const { register, handleSubmit, errors } = useForm({ resolver: yupResolver(schema) });
-        const [name, setName] = useState('');
-    const [number, setNumber] = useState('');
+    const itemById = useSelector(state => state.itemById);
+    const [name, setName] = useState(itemById.name);
+    const [number, setNumber] = useState(itemById.number);
 
         const hendleInputChanga = e => {
         switch (e.target.name) {
@@ -23,10 +30,13 @@ export default function ModalEdit() {
                 break;
         }
     }
-    // hendleOnSubmite()=>{}
+    const hendleOnSubmite=()=> {
+        console.log("modal");
+    }
 
     return (
-        <form onSubmit={handleSubmit(hendleOnSubmite)} className={styles.mainForm}>
+        <div className={styles.modalOverlay}>
+                    <form onSubmit={handleSubmit(hendleOnSubmite)} className={styles.mainForm}>
                 <label>Name 
             <input type="text" name="name" autoComplete="off" value={name} onChange={hendleInputChanga} ref={register} />
                  </label>
@@ -35,7 +45,8 @@ export default function ModalEdit() {
                      <input type="text" name="number" autoComplete="off" value={number} onChange={hendleInputChanga} ref={register}/>
                  </label>
                  {errors.number && <p>{ errors.number.message}</p>}
-                <button type="submit">Save contact</button>
+                <button type="submit" onClick={()=>dispatch(contactsAction.modalVisible(false))}>Save contact</button>
         </form>
+        </div>
     )
 };
