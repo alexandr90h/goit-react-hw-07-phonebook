@@ -3,7 +3,7 @@ import * as API from '../api/api'
 
 
 export const fetchContacts = () => async dispatch => {
-    dispatch(contactsAction.fetchContactsRequuest);
+    dispatch(contactsAction.fetchContactsRequuest());
     try {
         const contacts = await API.FetchContacts();
         dispatch(contactsAction.fetchContactsSuccess(contacts));
@@ -40,4 +40,13 @@ export const filterContacts = (item) => async dispatch => {
     } catch (error) {
         dispatch(contactsAction.filterContactsError(error));
     }
+}
+export const saveContacts = (id,name,number) => async dispatch => {
+    const item = {
+        id,
+        name,
+        number,
+    }
+    dispatch(contactsAction.saveContactsByIdRequuest());
+    API.SaveContacts(item).then(({ data }) => dispatch(contactsAction.saveContactsByIdSuccess(data))).catch(error => dispatch(contactsAction.saveContactsByIdError(error)));
 }

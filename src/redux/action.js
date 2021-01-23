@@ -20,12 +20,17 @@ const getContactsByIdRequuest = createAction('contacts/GetContactsByIdRequuest')
 const getContactsByIdSuccess = createAction('contacts/GetContactsByIdSuccess');
 const getContactsByIdError = createAction('contacts/GetContactsByIdError');
 
+const saveContactsByIdRequuest = createAction('contacts/saveContactsByIdRequuest');
+const saveContactsByIdSuccess = createAction('contacts/saveContactsByIdSuccess');
+const saveContactsByIdError = createAction('contacts/saveContactsByIdError');
+
 const filterChange = createAction('contacts/changeFilter');
 const modalVisible=createAction('contacts/modalVisible')
 
 const contactsAction = {
     fetchContactsRequuest, fetchContactsSuccess, fetchContactsError, addContactsRequuest,
     addContactsSuccess, addContactsError, delContactsRequuest, delContactsSuccess, delContactsError, filterContactsRequuest,
-    filterContactsSuccess,filterContactsError,filterChange,getContactsByIdSuccess,getContactsByIdRequuest,getContactsByIdError,modalVisible
+    filterContactsSuccess, filterContactsError, filterChange, getContactsByIdSuccess, getContactsByIdRequuest, getContactsByIdError, modalVisible,
+    saveContactsByIdRequuest,saveContactsByIdSuccess,saveContactsByIdError
 }
 export default contactsAction;

@@ -6,10 +6,10 @@ import styles from './modalEdit.module.scss';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import contactsAction from '../redux/action';
-
+import * as operation from "../redux/operation";
 
 export default function ModalEdit() {
-            const schema = yup.object().shape({
+    const schema = yup.object().shape({
         name: yup.string().required(),
         number:yup.number().required(),
             })
@@ -31,7 +31,8 @@ export default function ModalEdit() {
         }
     }
     const hendleOnSubmite=()=> {
-        console.log("modal");
+        dispatch(operation.saveContacts(itemById.id, name, number));
+        dispatch(contactsAction.modalVisible(false));
     }
 
     return (
@@ -45,7 +46,7 @@ export default function ModalEdit() {
                      <input type="text" name="number" autoComplete="off" value={number} onChange={hendleInputChanga} ref={register}/>
                  </label>
                  {errors.number && <p>{ errors.number.message}</p>}
-                <button type="submit" onClick={()=>dispatch(contactsAction.modalVisible(false))}>Save contact</button>
+                <button type="submit">Save contact</button>
         </form>
         </div>
     )
